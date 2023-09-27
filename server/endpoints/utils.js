@@ -1,6 +1,7 @@
 const { SystemSettings } = require("../models/systemSettings");
 
 function getGitVersion() {
+  console.log('>> debug > IN : getGitVersion (server/endpoints/utils.js)');
   try {
     return require("child_process")
       .execSync("git rev-parse HEAD")
@@ -17,6 +18,7 @@ function byteToGigaByte(n) {
 }
 
 async function getDiskStorage() {
+  console.log('>> debug > IN : getDiskStorage (server/endpoints/utils.js)');
   try {
     const checkDiskSpace = require("check-disk-space").default;
     const { free, size } = await checkDiskSpace("/");
@@ -33,6 +35,8 @@ async function getDiskStorage() {
 }
 
 function utilEndpoints(app) {
+  console.log('>> debug > IN : utilEndpoints (server/endpoints/utils.js)');
+
   if (!app) return;
 
   app.get("/utils/metrics", async (_, response) => {

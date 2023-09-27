@@ -12,6 +12,7 @@ const { userFromSession, reqBody } = require("../utils/http");
 const { validatedRequest } = require("../utils/middleware/validatedRequest");
 
 function adminEndpoints(app) {
+  console.log('>> debug > IN : adminEndpoints (server/endpoints/admin.js)')
   if (!app) return;
 
   app.get("/admin/users", [validatedRequest], async (request, response) => {
