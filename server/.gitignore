@@ -1,6 +1,6 @@
 .env.production
 .env.development
-storage/assets/*
+!storage/assets/*
 !storage/assets/anything-llm-dark.png
 !storage/assets/anything-llm-light.png
 storage/documents/*
