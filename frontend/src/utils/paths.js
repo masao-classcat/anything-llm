@@ -13,6 +13,9 @@ export default {
   docs: () => {
     return "https://docs.useanything.com";
   },
+  mailToClassCat: () => {
+    return "mailto:sales-info@classcat.com";
+  },
   mailToMintplex: () => {
     return "mailto:team@mintplexlabs.com";
   },
