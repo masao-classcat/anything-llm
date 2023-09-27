@@ -97,7 +97,8 @@ RUN mkdir -p ./server/ssl && openssl req -x509 -newkey rsa:2048 \
     -subj '/C=JP/O=ClassCat/CN=classcat.com'
 
 # Expose the server port
-EXPOSE 3001
+EXPOSE 8080
+#EXPOSE 3001
 
 #ENV LANG ja_JP.UTF-8
 

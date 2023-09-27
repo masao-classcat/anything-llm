@@ -21,7 +21,8 @@ services:
       - "../collector/outputs/:/app/collector/outputs"
     user: "${UID}:${GID}"
     ports:
-      - "3001:3001"
+      - "8080:8080"
+      #- "3001:3001"
     env_file:
       - .env
     networks:
