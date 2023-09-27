@@ -36,7 +36,7 @@ export default function DefaultChatContainer() {
       >
         <div className="p-4 max-w-full md:max-w-[75%] bg-orange-100 dark:bg-stone-700 rounded-b-2xl rounded-tr-2xl rounded-tl-sm">
           <p className="text-slate-800 dark:text-slate-200 font-[500] md:font-semibold text-sm md:text-base">
-            ClassCat&reg; KBase Manager にようこそ。ClassCat KBase Manager は AnythingLLM をクラスキャットが日本語化しカスタマイズした製品です。
+            ClassCat&reg; Knowledge Manager にようこそ。ClassCat Knowledge Manager は AnythingLLM をクラスキャットが日本語化しカスタマイズした製品です。
              AnythingLLM は Mintplex Labs によるオープンソースの AI ツールで
             <b>どのようなもの (anything)</b> でも訓練済みチャットボットに変換してそれで質問したりチャットできます。
             AnythingLLM は BYOK (Bring Your Own Keys) ソフトウェアですので、

@@ -75,7 +75,7 @@ export default function SettingsOverlay() {
       <div className="h-[100%] flex flex-col w-full justify-between pt-4 overflow-y-hidden">
         <div className="h-auto sidebar-items dark:sidebar-items">
           <p className="text-sm leading-loose my-2 text-slate-800 dark:text-slate-200 ">
-            Select a setting to configure
+            構成の設定の選択
           </p>
           {loading ? (
             <div className="flex flex-col gap-y-4 h-[65vh] pb-8 overflow-y-scroll no-scroll">
@@ -92,18 +92,18 @@ export default function SettingsOverlay() {
                 <Option
                   btnText="Appearance"
                   icon={<Eye className="h-4 w-4 flex-shrink-0" />}
-                  isActive={tab === "appearance"}
+                  isActive={tab === "外観"}
                   onClick={() => selectTab("appearance")}
                 />
               )}
               <Option
-                btnText="LLM Preference"
+                btnText="LLM 設定"
                 icon={<MessageSquare className="h-4 w-4 flex-shrink-0" />}
                 isActive={tab === "llm"}
                 onClick={() => selectTab("llm")}
               />
               <Option
-                btnText="Vector Database"
+                btnText="ベクトルデータベース"
                 icon={<Database className="h-4 w-4 flex-shrink-0" />}
                 isActive={tab === "vectordb"}
                 onClick={() => selectTab("vectordb")}
@@ -117,19 +117,19 @@ export default function SettingsOverlay() {
               {!settings?.MultiUserMode && (
                 <>
                   <Option
-                    btnText="Password Protection"
+                    btnText="パスワード保護"
                     icon={<Lock className="h-4 w-4 flex-shrink-0" />}
                     isActive={tab === "password"}
                     onClick={() => selectTab("password")}
                   />
                   <Option
-                    btnText="Multi User Mode"
+                    btnText="マルチユーザモード"
                     icon={<Users className="h-4 w-4 flex-shrink-0" />}
                     isActive={tab === "multiuser"}
                     onClick={() => selectTab("multiuser")}
                   />
                   <Option
-                    btnText="API Key"
+                    btnText="API キー"
                     icon={<Key className="h-4 w-4 flex-shrink-0" />}
                     isActive={tab === "apikey"}
                     onClick={() => selectTab("apikey")}

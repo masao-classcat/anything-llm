@@ -32,9 +32,9 @@ export default function LLMSelection({
     for (var [key, value] of form.entries()) data[key] = value;
     const { error } = await System.updateSystem(data);
     if (error) {
-      showToast(`Failed to save LLM settings: ${error}`, "error");
+      showToast(`LLM 設定の保存に失敗しました : ${error}`, "error");
     } else {
-      showToast("LLM settings saved successfully.", "success");
+      showToast("LLM 設定が正常に保存されました。", "success");
     }
     setSaving(false);
     setHasChanges(!!error ? true : false);
@@ -44,9 +44,9 @@ export default function LLMSelection({
       <div className="relative bg-white rounded-lg shadow dark:bg-stone-700">
         <div className="flex items-start justify-between px-6 py-4">
           <p className="text-gray-800 dark:text-stone-200 text-base ">
-            These are the credentials and settings for your preferred LLM chat &
-            embedding provider. Its important these keys are current and correct
-            or else AnythingLLM will not function properly.
+            これらは選択する LLM チャット & 埋め込みプロバイダーの認証情報と設定です。
+            これらのキーが最新で正しいことは重要です、
+            そうでなければ ClassCat&reg; Knowledge Manager は正しく機能しません。
           </p>
         </div>
 
@@ -54,7 +54,7 @@ export default function LLMSelection({
           <div className="px-6 space-y-6 flex h-full w-full">
             <div className="w-full flex flex-col gap-y-4">
               <p className="block text-sm font-medium text-gray-800 dark:text-slate-200">
-                LLM providers
+                LLM プロバイダー
               </p>
               <div className="w-full flex overflow-x-scroll gap-x-4">
                 <input hidden={true} name="LLMProvider" value={llmChoice} />
@@ -62,7 +62,7 @@ export default function LLMSelection({
                   name="OpenAI"
                   value="openai"
                   link="openai.com"
-                  description="The standard option for most non-commercial use. Provides both chat and embedding."
+                  description="殆どの非商用利用のための標準的なオプションです。チャットと埋め込みの両方を提供します。"
                   checked={llmChoice === "openai"}
                   image={OpenAiLogo}
                   onClick={updateLLMChoice}
@@ -71,25 +71,17 @@ export default function LLMSelection({
                   name="Azure OpenAi"
                   value="azure"
                   link="azure.microsoft.com"
-                  description="The enterprise option of OpenAI hosted on Azure services. Provides both chat and embedding."
+                  description="Azure サービスでホストされた OpenAI のエンタープライズ・オプションです。チャットと埋め込みの両方を提供します。"
                   checked={llmChoice === "azure"}
                   image={AzureOpenAiLogo}
                   onClick={updateLLMChoice}
-                />
-                <LLMProviderOption
-                  name="Anthropic Claude 2"
-                  value="anthropic-claude-2"
-                  link="anthropic.com"
-                  description="[COMING SOON] A friendly AI Assistant hosted by Anthropic. Provides chat services only!"
-                  checked={llmChoice === "anthropic-claude-2"}
-                  image={AnthropicLogo}
                 />
               </div>
               {llmChoice === "openai" && (
                 <>
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      API Key
+                      API キー
                     </label>
                     <input
                       type="text"
@@ -106,7 +98,7 @@ export default function LLMSelection({
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      Chat Model Selection
+                      チャットモデルの選択
                     </label>
                     <select
                       disabled={!canDebug}
@@ -139,7 +131,7 @@ export default function LLMSelection({
                 <>
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      Azure Service Endpoint
+                      Azure サービス・エンドポイント
                     </label>
                     <input
                       type="url"
@@ -156,14 +148,14 @@ export default function LLMSelection({
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      API Key
+                      API キー
                     </label>
                     <input
                       type="password"
                       name="AzureOpenAiKey"
                       disabled={!canDebug}
                       className="bg-gray-50 border border-gray-500 text-gray-900 placeholder-gray-500 text-sm rounded-lg dark:bg-stone-700 focus:border-stone-500 block w-full p-2.5 dark:text-slate-200 dark:placeholder-stone-500 dark:border-slate-200"
-                      placeholder="Azure OpenAI API Key"
+                      placeholder="Azure OpenAI API キー"
                       defaultValue={
                         settings?.AzureOpenAiKey ? "*".repeat(20) : ""
                       }
@@ -175,7 +167,7 @@ export default function LLMSelection({
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      Chat Model Deployment Name
+                      チャットモデル配備名
                     </label>
                     <input
                       type="text"
@@ -192,7 +184,7 @@ export default function LLMSelection({
 
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      Embedding Model Deployment Name
+                      埋め込みモデル配備名
                     </label>
                     <input
                       type="text"
@@ -226,7 +218,7 @@ export default function LLMSelection({
               type="submit"
               className="w-full text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
             >
-              {saving ? "Saving..." : "Save changes"}
+              {saving ? "保存中..." : "変更の保存"}
             </button>
           </div>
         </form>
@@ -236,7 +228,7 @@ export default function LLMSelection({
             type="button"
             className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
           >
-            Close
+            閉じる
           </button>
         </div>
       </div>
