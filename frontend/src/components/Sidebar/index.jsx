@@ -71,7 +71,7 @@ export default function Sidebar() {
                   >
                     <Plus className="h-4 w-4" />
                     <p className="text-slate-800 dark:text-slate-200 text-xs leading-loose font-semibold">
-                      New workspace
+                      新しいワークスペース
                     </p>
                   </button>
                 </div>
@@ -231,7 +231,7 @@ export function SidebarMobileHeader() {
                     >
                       <Plus className="h-4 w-4" />
                       <p className="text-slate-800 dark:text-slate-200 text-xs leading-loose font-semibold">
-                        New workspace
+                        新しいワークスペース
                       </p>
                     </button>
                   </div>
@@ -326,7 +326,7 @@ function LogoutButton() {
     >
       <LogOut className="h-4 w-4" />
       <p className="text-slate-800 dark:text-slate-200 text-xs leading-loose font-semibold">
-        Log out of {user.username}
+        {user.username} をログアウト
       </p>
     </button>
   );
