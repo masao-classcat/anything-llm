@@ -90,9 +90,9 @@ export default function SettingsOverlay() {
             <div className="flex flex-col gap-y-4 h-[65vh] pb-8 overflow-y-scroll no-scroll">
               {!settings?.MultiUserMode && (
                 <Option
-                  btnText="Appearance"
+                  btnText="外観"
                   icon={<Eye className="h-4 w-4 flex-shrink-0" />}
-                  isActive={tab === "外観"}
+                  isActive={tab === "appearance"}
                   onClick={() => selectTab("appearance")}
                 />
               )}
