@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import Sidebar, { SidebarMobileHeader } from "../../../components/AdminSidebar";
 import { isMobile } from "react-device-detect";
 import Admin from "../../../models/admin";
-import AnythingLLMLight from "../../../media/logo/anything-llm-light.png";
-import AnythingLLMDark from "../../../media/logo/anything-llm-dark.png";
+
+// import AnythingLLMLight from "../../../media/logo/anything-llm-light.png";
+// import AnythingLLMDark from "../../../media/logo/anything-llm-dark.png";
+import AnythingLLMLight from "../../../media/logo/classcat-kbase-light.png";
+import AnythingLLMDark from "../../../media/logo/classcat-kbase-dark.png";
+
 import usePrefersDarkMode from "../../../hooks/usePrefersDarkMode";
 import useLogo from "../../../hooks/useLogo";
 import System from "../../../models/system";
