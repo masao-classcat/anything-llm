@@ -99,7 +99,7 @@ RUN mkdir -p ./server/ssl && openssl req -x509 -newkey rsa:2048 \
 # Expose the server port
 EXPOSE 3001
 
-ENV LANG ja_JP.UTF-8
+#ENV LANG ja_JP.UTF-8
 
 # Setup the healthcheck
 HEALTHCHECK --interval=1m --timeout=10s --start-period=1m \
