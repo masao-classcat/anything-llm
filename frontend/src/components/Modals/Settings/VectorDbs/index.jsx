@@ -43,9 +43,8 @@ export default function VectorDBSelection({
       <div className="relative bg-white rounded-lg shadow dark:bg-stone-700">
         <div className="flex items-start justify-between px-6 py-4">
           <p className="text-gray-800 dark:text-stone-200 text-base ">
-            These are the credentials and settings for how your AnythingLLM
-            instance will function. Its important these keys are current and
-            correct.
+            これらは ClassCat&reg; Knowledge Manager インスタンスが機能するために必要な認証情報と設定です。
+            これらのキーが最新で正しいことは重要です。
           </p>
         </div>
 
@@ -59,7 +58,7 @@ export default function VectorDBSelection({
           <div className="px-6 space-y-6 flex h-full w-full">
             <div className="w-full flex flex-col gap-y-4">
               <p className="block text-sm font-medium text-gray-800 dark:text-slate-200">
-                Vector database providers
+                ベクトルデータベース・プロバイダー
               </p>
               <div className="w-full flex md:flex-wrap overflow-x-scroll gap-4">
                 <input hidden={true} name="VectorDB" value={vectorDB} />
@@ -67,18 +66,9 @@ export default function VectorDBSelection({
                   name="Chroma"
                   value="chroma"
                   link="trychroma.com"
-                  description="Open source vector database you can host yourself or on the cloud."
+                  description="貴方自身で、あるいはクラウド上でホストできるオープンソースのベクトルデータベースです。"
                   checked={vectorDB === "chroma"}
                   image={ChromaLogo}
-                  onClick={updateVectorChoice}
-                />
-                <VectorDBOption
-                  name="Pinecone"
-                  value="pinecone"
-                  link="pinecone.io"
-                  description="100% cloud-based vector database for enterprise use cases."
-                  checked={vectorDB === "pinecone"}
-                  image={PineconeLogo}
                   onClick={updateVectorChoice}
                 />
                 <VectorDBOption
@@ -91,19 +81,10 @@ export default function VectorDBSelection({
                   onClick={updateVectorChoice}
                 />
                 <VectorDBOption
-                  name="Weaviate"
-                  value="weaviate"
-                  link="weaviate.io"
-                  description="Open source local and cloud hosted multi-modal vector database."
-                  checked={vectorDB === "weaviate"}
-                  image={WeaviateLogo}
-                  onClick={updateVectorChoice}
-                />
-                <VectorDBOption
                   name="LanceDB"
                   value="lancedb"
                   link="lancedb.com"
-                  description="100% local vector DB that runs on the same instance as AnythingLLM."
+                  description="100% ローカルのベクトル DB で、ClassCat&reg; Knowledge と同じインスタンスで実行されます"
                   checked={vectorDB === "lancedb"}
                   image={LanceDbLogo}
                   onClick={updateVectorChoice}
@@ -168,7 +149,7 @@ export default function VectorDBSelection({
                 <>
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-800 dark:text-slate-200">
-                      Chroma Endpoint
+                      Chroma エンドポイント
                     </label>
                     <input
                       type="url"
@@ -187,7 +168,7 @@ export default function VectorDBSelection({
               {vectorDB === "lancedb" && (
                 <div className="w-full h-40 items-center justify-center flex">
                   <p className="text-gray-800 dark:text-slate-400">
-                    There is no configuration needed for LanceDB.
+                    LanceDB に必要な設定はありません。
                   </p>
                 </div>
               )}
@@ -270,7 +251,7 @@ export default function VectorDBSelection({
               type="submit"
               className="w-full text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
             >
-              {saving ? "Saving..." : "Save changes"}
+              {saving ? "保存中..." : "変更の保存"}
             </button>
           </div>
         </form>
@@ -280,7 +261,7 @@ export default function VectorDBSelection({
             type="button"
             className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
           >
-            Close
+            閉じる
           </button>
         </div>
       </div>

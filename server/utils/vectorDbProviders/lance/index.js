@@ -49,17 +49,22 @@ const LanceDb = {
   embedder: function () {
     return new OpenAIEmbeddings({ openAIApiKey: process.env.OPEN_AI_KEY });
   },
+
   similarityResponse: async function (client, namespace, queryVector) {
+		console.log('>> debug > IN LanceDb::similarityResponse (utils/vectorDbProviders/lance/index.js) ')
+
     const collection = await client.openTable(namespace);
     const result = {
       contextTexts: [],
       sourceDocuments: [],
     };
 
+    console.log(process.env.CC_SEARCH_LIMIT)
+
     const response = await collection
       .search(queryVector)
       .metricType("cosine")
-      .limit(5)
+      .limit(process.env.CC_SEARCH_LIMIT)   // default : 5
       .execute();
 
     response.forEach((item) => {
@@ -157,13 +162,15 @@ const LanceDb = {
         return true;
       }
 
+      console.log( process.env.CC_CHUNK_SIZE, process.env.CC_CHUNK_OVERLAP)
+
       // If we are here then we are going to embed and store a novel document.
       // We have to do this manually as opposed to using LangChains `xyz.fromDocuments`
       // because we then cannot atomically control our namespace to granularly find/remove documents
       // from vectordb.
       const textSplitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 1000,
-        chunkOverlap: 20,
+        chunkSize: process.env.CC_CHUNK_SIZE,   // default : 1000,
+        chunkOverlap: process.env.CC_CHUNK_OVERLAP,   // default : 20,
       });
       const textChunks = await textSplitter.splitText(pageContent);
 
