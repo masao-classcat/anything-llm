@@ -1,4 +1,7 @@
-const lancedb = require("vectordb");
+
+/*** LanceDB ***/
+
+const lancedb = require("vectordb");   // lancedb
 const { toChunks, getLLMProvider } = require("../../helpers");
 const { OpenAIEmbeddings } = require("langchain/embeddings/openai");
 const { RecursiveCharacterTextSplitter } = require("langchain/text_splitter");
@@ -6,38 +9,95 @@ const { storeVectorResult, cachedVectorInformation } = require("../../files");
 const { v4: uuidv4 } = require("uuid");
 const { chatPrompt } = require("../../chats");
 
-const LanceDb = {
-  uri: `${
-    !!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "./storage/"
-  }lancedb`,
-  name: "LanceDb",
-  connect: async function () {
-    if (process.env.VECTOR_DB !== "lancedb")
-      throw new Error("LanceDB::Invalid ENV settings");
+// TODO (masao)
+// o 検索数のデフォルトを可変に。 (21-sep-23)
 
-    const client = await lancedb.connect(this.uri);
-    return { client };
-  },
-  heartbeat: async function () {
-    await this.connect();
-    return { heartbeat: Number(new Date()) };
-  },
+// masao
+const { format } = require('util')
+
+/*
+$ pwd
+/app/server/storage
+
+$ ls -l
+total 68
+-rw-rw-r-- 1 anythingllm anythingllm  1652 Sep 19 14:12 README.md
+-rw-r--r-- 1 anythingllm anythingllm 45056 Sep 19 14:20 anythingllm.db
+drwxrwxr-x 2 anythingllm anythingllm  4096 Sep 19 14:12 assets
+drwxrwxr-x 3 anythingllm anythingllm  4096 Sep 19 14:19 documents
+drwxr-xr-x 3 anythingllm anythingllm  4096 Sep 19 14:20 lancedb
+drwxrwxr-x 2 anythingllm anythingllm  4096 Sep 19 14:20 vector-cache
+
+$ ls -l documents/
+total 8
+-rw-rw-r-- 1 anythingllm anythingllm  699 Sep 19 14:12 DOCUMENTS.md
+drwxr-xr-x 2 anythingllm anythingllm 4096 Sep 19 14:19 custom-documents
+
+$ ls -l documents/custom-documents/
+total 32
+-rw-r--r-- 1 anythingllm anythingllm  9234 Sep 19 14:19 ayano-b67e2c69-e19f-4c9f-8d10-8388ad6126c7.json
+-rw-r--r-- 1 anythingllm anythingllm 17027 Sep 19 14:19 yagami-138ef771-5c2b-4f3d-8af0-201f28b9e8fe.json
+
+$ ls -l lancedb/
+total 4
+drwxr-xr-x 4 anythingllm anythingllm 4096 Sep 19 14:20 masao.lance
+
+$ ls -l lancedb/masao.lance/
+total 12
+-rw-r--r-- 1 anythingllm anythingllm  494 Sep 19 14:20 _latest.manifest
+drwxr-xr-x 2 anythingllm anythingllm 4096 Sep 19 14:20 _versions
+drwxr-xr-x 2 anythingllm anythingllm 4096 Sep 19 14:20 data
+*/
+const LanceDb = {
+	//  ./server/storage/lancedb
+  	uri: `${!!process.env.STORAGE_DIR ? `${process.env.STORAGE_DIR}/` : "./storage/"}lancedb`,
+
+  	name: "LanceDb",
+
+	connect: async function () {
+		console.log('>>> debug : IN connect (server/utils/vectorDbProviders/lance/index.js)')
+
+		// 環境変数は process.env オブジェクトを参照。
+		// process モジュールはデフォルトで使用可能、require する必要はなし。
+		if (process.env.VECTOR_DB !== "lancedb")
+      		throw new Error("LanceDB::Invalid ENV settings");
+
+		console.log(this.uri) //  ./server/storage/lancedb
+    	const client = await lancedb.connect(this.uri);
+
+		console.log('すべてのテーブルを表示')
+		console.log(await client.tableNames());
+
+		return { client };
+	},
+
+  	heartbeat: async function () {
+    	await this.connect();
+    	return { heartbeat: Number(new Date()) };
+  	},
+
   tables: async function () {
     const fs = require("fs");
     const { client } = await this.connect();
     const dirs = fs.readdirSync(client.uri);
     return dirs.map((folder) => folder.replace(".lance", ""));
   },
-  totalVectors: async function () {
-    const { client } = await this.connect();
-    const tables = await this.tables();
-    let count = 0;
-    for (const tableName of tables) {
-      const table = await client.openTable(tableName);
-      count += await table.countRows();
-    }
-    return count;
-  },
+
+  	totalIndicies: async function () {
+		console.log ('IN totalIndicies (lance/index.js)')
+    	const { client } = await this.connect();
+    	const tables = await this.tables();
+    	let count = 0;
+    	for (const tableName of tables) {
+			const message = format('テーブル %s を openTable', tableName)
+			console.log(message)
+	
+      		const table = await client.openTable(tableName);
+      		count += await table.countRows();
+    	}
+    	return count;
+  	},
+
   namespaceCount: async function (_namespace = null) {
     const { client } = await this.connect();
     const exists = await this.namespaceExists(client, _namespace);
@@ -50,51 +110,69 @@ const LanceDb = {
     return new OpenAIEmbeddings({ openAIApiKey: process.env.OPEN_AI_KEY });
   },
 
-  similarityResponse: async function (client, namespace, queryVector) {
-		console.log('>> debug > IN LanceDb::similarityResponse (utils/vectorDbProviders/lance/index.js) ')
+  	// 類似性検索
+  	similarityResponse: async function (client, namespace, queryVector) {
+		console.log('>>> debug : IN similarityResponse (utils/vectorDbProviders/lance/index.js))')
 
-    const collection = await client.openTable(namespace);
-    const result = {
-      contextTexts: [],
-      sourceDocuments: [],
-    };
+		const message = format('テーブル %s を openTable', namespace)
+		console.log(message)
 
-    console.log(process.env.CC_SEARCH_LIMIT)
+		const collection = await client.openTable(namespace);
+    	const result = {
+      		contextTexts: [],
+      		sourceDocuments: [],
+	    };
 
-    const response = await collection
-      .search(queryVector)
-      .metricType("cosine")
-      .limit(process.env.CC_SEARCH_LIMIT)   // default : 5
-      .execute();
+		// TODO: limit と検索の種類を可変に
+    	const response = await collection
+      		.search(queryVector)
+      		.metricType("cosine")   // cosine 類似度
+      		.limit(2)	// default : 5
+      		.execute();
 
-    response.forEach((item) => {
-      const { vector: _, ...rest } = item;
-      result.contextTexts.push(rest.text);
-      result.sourceDocuments.push(rest);
-    });
+    	response.forEach((item) => {
+      		const { vector: _, ...rest } = item;
+      		result.contextTexts.push(rest.text);
+      		result.sourceDocuments.push(rest);
+    	});
 
-    return result;
-  },
-  namespace: async function (client, namespace = null) {
-    if (!namespace) throw new Error("No namespace value provided.");
-    const collection = await client.openTable(namespace).catch(() => false);
-    if (!collection) return null;
+    	return result;
+  	},
 
-    return {
-      ...collection,
-    };
-  },
-  updateOrCreateCollection: async function (client, data = [], namespace) {
-    const hasNamespace = await this.hasNamespace(namespace);
-    if (hasNamespace) {
-      const collection = await client.openTable(namespace);
-      await collection.add(data);
-      return true;
-    }
+  	namespace: async function (client, namespace = null) {
+		console.log('>>> debug : IN namespace (utils/vectorDbProviders/lance/index.js))')
 
-    await client.createTable(namespace, data);
-    return true;
-  },
+		if (!namespace) throw new Error("No namespace value provided.");
+
+		const message = format('テーブル %s を openTable', namespace)
+		console.log(message)
+		const collection = await client.openTable(namespace).catch(() => false);
+    	if (!collection) return null;
+
+    	return {
+      		...collection, // collection を spread
+    	};
+  	},
+
+  	updateOrCreateCollection: async function (client, data = [], namespace) {
+		console.log('>>> debug : IN updateOrCreateCollection (utils/vectorDbProviders/lance/index.js))')
+		console.log (namespace)
+
+		const hasNamespace = await this.hasNamespace(namespace);
+
+		if (hasNamespace) {
+			console.log('>>> debug : openTable & collection..add')
+      		const collection = await client.openTable(namespace);
+      		await collection.add(data);
+      		return true;
+    	}
+
+		console.log('>>> debug : createTable')
+		console.log(data)
+    	await client.createTable(namespace, data);
+    	return true;
+  	},
+
   hasNamespace: async function (namespace = null) {
     if (!namespace) return false;
     const { client } = await this.connect();
@@ -106,11 +184,13 @@ const LanceDb = {
     const collections = await this.tables();
     return collections.includes(namespace);
   },
+
   deleteVectorsInNamespace: async function (client, namespace = null) {
     const fs = require("fs");
     fs.rm(`${client.uri}/${namespace}.lance`, { recursive: true }, () => null);
     return true;
   },
+
   deleteDocumentFromNamespace: async function (namespace, docId) {
     const { client } = await this.connect();
     const exists = await this.namespaceExists(client, namespace);
@@ -130,12 +210,15 @@ const LanceDb = {
     await table.delete(`id IN (${vectorIds.map((v) => `'${v}'`).join(",")})`);
     return true;
   },
+
   addDocumentToNamespace: async function (
     namespace,
     documentData = {},
     fullFilePath = null
   ) {
     const { DocumentVectors } = require("../../../models/vectors");
+
+    console.log("IN : addDocumentToNamespace (lance/index.js)")
     try {
       const { pageContent, docId, ...metadata } = documentData;
       if (!pageContent || pageContent.length == 0) return false;
@@ -147,6 +230,8 @@ const LanceDb = {
         const { chunks } = cacheResult;
         const documentVectors = [];
         const submissions = [];
+
+        console.log('cacheResult が存在。')
 
         for (const chunk of chunks) {
           chunk.forEach((chunk) => {
@@ -162,15 +247,14 @@ const LanceDb = {
         return true;
       }
 
-      console.log( process.env.CC_CHUNK_SIZE, process.env.CC_CHUNK_OVERLAP)
-
       // If we are here then we are going to embed and store a novel document.
       // We have to do this manually as opposed to using LangChains `xyz.fromDocuments`
       // because we then cannot atomically control our namespace to granularly find/remove documents
       // from vectordb.
+      console.log('新しいドキュメントを埋め込みストアします。')
       const textSplitter = new RecursiveCharacterTextSplitter({
-        chunkSize: process.env.CC_CHUNK_SIZE,   // default : 1000,
-        chunkOverlap: process.env.CC_CHUNK_OVERLAP,   // default : 20,
+        chunkSize: 500, // 1000,
+        chunkOverlap: 20,
       });
       const textChunks = await textSplitter.splitText(pageContent);
 
