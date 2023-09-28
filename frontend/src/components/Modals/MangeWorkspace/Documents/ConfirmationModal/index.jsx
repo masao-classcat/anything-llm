@@ -48,22 +48,20 @@ export default function ConfirmationModal({
       <div className="w-fit px-10 p-4 min-w-1/2 rounded-lg bg-white shadow dark:bg-stone-700 text-black dark:text-slate-200">
         <div className="flex flex-col w-full">
           <p className="font-semibold">
-            Are you sure you want to embed these documents?
+            これらのドキュメントを埋め込みますか？
           </p>
 
           <div className="flex flex-col gap-y-1">
             {dollarValue <= 0 ? (
               <p className="text-base mt-4">
-                You will be embedding {additions.length} new documents into this
-                workspace.
+                このワークスペースに  {additions.length} 個の新しいドキュメントを埋め込みます。
                 <br />
-                This will not incur any costs for OpenAI credits.
+                これは OpenAI クレジットのコストはかかりません。
               </p>
             ) : (
               <p className="text-base mt-4">
-                You will be embedding {additions.length} new documents into this
-                workspace. <br />
-                This will cost {dollarText} in OpenAI credits.
+                このワークスペースに  {additions.length} 個の新しいドキュメントを埋め込みます。<br/>
+                これは OpenAI クレジットが {dollarText} かかります。
               </p>
             )}
           </div>
@@ -73,13 +71,13 @@ export default function ConfirmationModal({
               onClick={hideConfirm}
               className="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-lg dark:text-slate-200 dark:hover:bg-stone-900"
             >
-              Cancel
+              キャンセル
             </button>
             <button
               onClick={updateWorkspace}
               className="border border-gray-800 text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-lg dark:text-slate-200 dark:border-slate-200 dark:hover:bg-stone-900"
             >
-              Continue
+              続行
             </button>
           </div>
         </div>
