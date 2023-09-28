@@ -4,6 +4,9 @@ const { checkForMigrations } = require("../utils/database");
 const { WorkspaceUser } = require("./workspaceUsers");
 const { escape } = require("sqlstring-sqlite");
 
+// masao : 29-sep-23
+const encoding = require('encoding-japanese');
+
 const Workspace = {
   tablename: "workspaces",
   writable: [
@@ -79,7 +82,17 @@ const Workspace = {
     return db;
   },
   new: async function (name = null, creatorId = null) {
+    console.log('>> debug > IN : Workspace::new (server/models/workspace.js')
     if (!name) return { result: null, message: "name cannot be null" };
+
+    // masao : 29-sep-23
+    const enc = encoding.detect(name);
+    console.log(enc)
+
+    if (encoding.detect(name) !== "ASCII") return { result: null, message: "ワークスペース名に日本語文字列は使用できません。"};
+    // 'UNICODE'
+    // 'ASCII'
+
     var slug = slugify(name, { lower: true });
 
     const existingBySlug = await this.get(`slug = ${escape(slug)}`);
