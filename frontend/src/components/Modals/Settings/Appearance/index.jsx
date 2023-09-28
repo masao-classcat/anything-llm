@@ -41,39 +41,39 @@ export default function Appearance() {
     formData.append("logo", file);
     const { success, error } = await System.uploadLogo(formData);
     if (!success) {
-      console.error("Failed to upload logo:", error);
-      showToast(`Failed to upload logo: ${error}`, "error");
+      console.error("ロゴのアップロードに失敗しました :", error);
+      showToast(`ロゴのアップロードに失敗しました : ${error}`, "error");
       return;
     }
 
     const logoURL = await System.fetchLogo();
     setLogo(logoURL);
-    showToast("Image uploaded successfully.", "success");
+    showToast("画像は正常にアップロードされました。", "success");
   };
 
   const handleRemoveLogo = async () => {
     const { success, error } = await System.removeCustomLogo();
     if (!success) {
-      console.error("Failed to remove logo:", error);
-      showToast(`Failed to remove logo: ${error}`, "error");
+      console.error("ロゴの削除に失敗しました :", error);
+      showToast(`ロゴの削除に失敗しました : ${error}`, "error");
       return;
     }
 
     const logoURL = await System.fetchLogo();
     setLogo(logoURL);
-    showToast("Image successfully removed.", "success");
+    showToast("画像は正常に削除されました。", "success");
   };
 
   const addMessage = (type) => {
     if (type === "user") {
       setMessages([
         ...messages,
-        { user: "Double click to edit...", response: "" },
+        { user: "ダブルクリックして編集...", response: "" },
       ]);
     } else {
       setMessages([
         ...messages,
-        { user: "", response: "Double click to edit..." },
+        { user: "", response: "ダブルクリックして編集..." },
       ]);
     }
   };
@@ -93,10 +93,10 @@ export default function Appearance() {
   const handleMessageSave = async () => {
     const { success, error } = await System.setWelcomeMessages(messages);
     if (!success) {
-      showToast(`Failed to update welcome messages: ${error}`, "error");
+      showToast(`ウェルカムメッセージの更新に失敗しました : ${error}`, "error");
       return;
     }
-    showToast("Successfully updated welcome messages.", "success");
+    showToast("ウェルカムメッセージは正常に更新されました。", "success");
     setHasChanges(false);
   };
 
@@ -105,7 +105,7 @@ export default function Appearance() {
       <div className="relative bg-white rounded-lg shadow dark:bg-stone-700">
         <div className="flex items-start justify-between px-6 py-4">
           <p className="text-gray-800 dark:text-stone-200 text-base ">
-            Customize the appearance settings of AnythingLLM instance.
+            ClassCat&reg; knowledge Manager インスタンスの外観設定をカスタマイズします。
           </p>
         </div>
 
@@ -113,10 +113,10 @@ export default function Appearance() {
           <div className="mb-6">
             <div className="flex flex-col gap-y-2">
               <h2 className="leading-tight font-medium text-black dark:text-white">
-                Custom Logo
+              カスタム・ロゴ
               </h2>
               <p className="leading-tight text-sm text-gray-500 dark:text-slate-400">
-                Change the logo that appears in the sidebar.
+                サイドバーに表示されるロゴを変更します。
               </p>
             </div>
             <div className="flex flex-col md:flex-row items-center">
@@ -133,7 +133,7 @@ export default function Appearance() {
               <div className="flex flex-col">
                 <div className="mb-4">
                   <label className="cursor-pointer text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                    Upload Image
+                    画像のアップロード
                     <input
                       type="file"
                       accept="image/*"
@@ -145,11 +145,11 @@ export default function Appearance() {
                     onClick={handleRemoveLogo}
                     className="ml-4 cursor-pointer text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                   >
-                    Remove Custom Logo
+                    カスタム・ロゴの削除
                   </button>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-300">
-                  Upload your logo. Recommended size: 800x200.
+                  貴方のロゴをアップロードします。推奨サイズ: 800x200
                 </div>
               </div>
             </div>
@@ -157,10 +157,10 @@ export default function Appearance() {
           <div className="mb-6">
             <div className="flex flex-col gap-y-2">
               <h2 className="leading-tight font-medium text-black dark:text-white">
-                Custom Messages
+                カスタムメッセージ
               </h2>
               <p className="leading-tight text-sm text-gray-500 dark:text-slate-400">
-                Change the default messages that are displayed to the users.
+                ユーザに表示されるデフォルトメッセージを変更します。
               </p>
             </div>
             <div className="mt-6 flex flex-col gap-y-6 bg-white dark:bg-black-900 p-4 rounded-lg">
@@ -191,13 +191,13 @@ export default function Appearance() {
                   className="self-end text-orange-500 hover:text-orange-700 transition"
                   onClick={() => addMessage("response")}
                 >
-                  + System Message
+                  + システムメッセージ
                 </button>
                 <button
                   className="self-end text-orange-500 hover:text-orange-700 transition"
                   onClick={() => addMessage("user")}
                 >
-                  + User Message
+                  + ユーザメッセージ
                 </button>
               </div>
             </div>
@@ -207,7 +207,7 @@ export default function Appearance() {
                   className="ml-4 cursor-pointer text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                   onClick={handleMessageSave}
                 >
-                  Save Messages
+                  メッセージを保存
                 </button>
               </div>
             )}

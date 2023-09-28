@@ -47,7 +47,7 @@ export default function SystemSettingsModal({ tab = null, hideModal = noop }) {
           <div className="flex flex-col gap-y-1 border-b dark:border-gray-600 px-4 pt-4 ">
             <div className="flex items-start justify-between rounded-t ">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                System Settings
+                システム設定
               </h3>
               <button
                 onClick={hideModal}
