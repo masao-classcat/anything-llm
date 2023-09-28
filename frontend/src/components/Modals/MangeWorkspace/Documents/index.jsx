@@ -88,22 +88,22 @@ export default function DocumentSettings({ workspace }) {
   const updateWorkspace = async (e) => {
     e.preventDefault();
     setSaving(true);
-    showToast("Updating workspace...", "info", { autoClose: false });
+    showToast("ワークスペース更新中...", "info", { autoClose: false });
     setShowConfirmation(false);
 
     const changes = docChanges();
     await Workspace.modifyEmbeddings(workspace.slug, changes)
       .then((res) => {
         if (res && res.workspace) {
-          showToast("Workspace updated successfully.", "success", {
+          showToast("ワークスペースの更新に成功しました。", "success", {
             clear: true,
           });
         } else {
-          showToast("Workspace update failed.", "error", { clear: true });
+          showToast("ワークスペースの更新に失敗しました。", "error", { clear: true });
         }
       })
       .catch((error) => {
-        showToast(`Workspace update failed: ${error}`, "error", {
+        showToast(`ワークスペースの更新に失敗しました : ${error}`, "error", {
           clear: true,
         });
       });
@@ -149,7 +149,7 @@ export default function DocumentSettings({ workspace }) {
         <div className="p-6 flex h-full w-full max-h-[80vh] overflow-y-scroll">
           <div className="flex flex-col gap-y-1 w-full">
             <p className="text-slate-200 dark:text-stone-300 text-center">
-              loading workspace files
+              ワークスペースをロードしています
             </p>
           </div>
         </div>
@@ -174,18 +174,17 @@ export default function DocumentSettings({ workspace }) {
             <div className="mb-4 w-full gap-x-2 rounded-lg h-10 border bg-orange-200 border-orange-800 dark:bg-orange-300 text-orange-800 flex  items-center justify-center">
               <AlertTriangle className="h-6 w-6" />
               <p className="text-sm">
-                You don't have any files uploaded. Upload a file via the "Upload
-                Docs" tab.
+                アップロードされたファイルがありません。「ドキュメントのアップロード」タブからファイルをアップロードしてください。
               </p>
             </div>
           )}
 
           <div className="flex flex-col mb-2">
             <p className="text-gray-800 dark:text-stone-200 text-base ">
-              Select folders to add or remove from workspace.
+              ワークスペースに追加したり削除するフォルダを選択します。
             </p>
             <p className="text-gray-800 dark:text-stone-400 text-xs italic">
-              {selectedFiles.length} documents in workspace selected.
+              選択されたワークスペース内に {selectedFiles.length} ドキュメント。
             </p>
           </div>
           <div className="w-full h-auto border border-slate-200 dark:border-stone-600 rounded-lg px-4 py-2">
@@ -210,7 +209,7 @@ export default function DocumentSettings({ workspace }) {
           type="button"
           className="border border-transparent text-gray-500 bg-white hover:bg-red-100 rounded-lg whitespace-nowrap text-sm font-medium px-5 py-2.5 hover:text-red-900 focus:z-10 dark:bg-transparent dark:text-gray-300 dark:hover:text-white dark:hover:bg-red-600"
         >
-          Delete Workspace
+          ワークスペースの削除
         </button>
 
         <div className="flex items-center">
@@ -220,7 +219,7 @@ export default function DocumentSettings({ workspace }) {
             type="submit"
             className="text-slate-200 bg-black-900 px-4 py-2 rounded-lg hover:bg-gray-900 whitespace-nowrap text-sm"
           >
-            {saving ? "Saving..." : "Confirm Changes"}
+            {saving ? "セーブ中..." : "変更の確認"}
           </button>
         </div>
       </div>
