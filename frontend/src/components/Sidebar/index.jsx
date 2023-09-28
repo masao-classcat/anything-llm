@@ -84,7 +84,7 @@ export default function Sidebar() {
                   <LLMStatus />
                   <IndexCount />
                 </div>         
-                こ<LogoutButton />こ
+                <LogoutButton />
               </div>
 
               {/* Footer */}
@@ -227,7 +227,7 @@ export function SidebarMobileHeader() {
                     <LLMStatus />
                     <IndexCount />
                   </div>
-                  こ<LogoutButton />こ
+                  <LogoutButton />
                 </div>
 
                 {/* Footer */}
