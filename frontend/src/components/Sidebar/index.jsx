@@ -102,18 +102,12 @@ export default function Sidebar() {
                   >
                     <BookOpen className="h-4 w-4 " />
                   </a>
-                  <a
-                    href={paths.discord()}
-                    className="transition-all duration-300 p-2 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-800 group"
-                  >
-                    <Discord className="h-4 w-4 stroke-slate-400 group-hover:stroke-slate-200 dark:group-hover:stroke-slate-200" />
-                  </a>
                 </div>
                 <a
-                  href={paths.mailToMintplex()}
+                  href={paths.mailToClassCat()}
                   className="transition-all duration-300 text-xs text-slate-500 dark:text-slate-600 hover:text-blue-600 dark:hover:text-blue-400"
                 >
-                  @MintplexLabs
+                  @ClassCat
                 </a>
               </div>
             </div>
