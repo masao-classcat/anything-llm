@@ -139,11 +139,10 @@ const Tracking = memo(({ workspaceSlug }) => {
   return (
     <div className="flex flex-col md:flex-row w-full justify-center items-center gap-2 mb-2 px-4 mx:px-0">
       <p className="bg-gray-200 dark:bg-stone-600 text-gray-800 dark:text-slate-400 text-xs px-2 rounded-lg font-mono text-center">
-        Chat mode: {chatMode}
+        チャットモード: {chatMode}
       </p>
       <p className="text-slate-400 text-xs text-center">
-        Responses from system may produce inaccurate or invalid responses - use
-        with caution.
+        <b>システムの応答は不正確または妥当ではない応答を生成する可能性があります - 利用には注意してください。</b>
       </p>
     </div>
   );
@@ -154,19 +153,19 @@ function CommandMenu({ workspace, show, handleClick, hide }) {
   const COMMANDS = [
     {
       cmd: "/conversation",
-      description: "- switch to chat mode (remembers recent chat history) .",
+      description: "- チャットモードに切り替えます (最近のチャット履歴を記憶します)。",
     },
     {
       cmd: "/query",
-      description: "- switch to query mode (does not remember previous chats).",
+      description: "- クエリーモードに切り替えます (以前のチャットは記憶しません)。",
     },
-    { cmd: "/reset", description: "- clear current chat history." },
+    { cmd: "/reset", description: "- 現在のチャット履歴をクリアします。" },
   ];
 
   return (
     <div className="absolute top-[-25vh] md:top-[-23vh] min-h-[200px] flex flex-col rounded-lg border border-slate-400 p-2 pt-4 bg-gray-50 dark:bg-stone-600">
       <div className="flex justify-between items-center border-b border-slate-400 px-2 py-1 ">
-        <p className="text-gray-800 dark:text-slate-200">Available Commands</p>
+        <p className="text-gray-800 dark:text-slate-200">利用可能なコマンド</p>
         <button
           type="button"
           onClick={hide}

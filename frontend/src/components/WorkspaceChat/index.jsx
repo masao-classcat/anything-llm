@@ -36,10 +36,10 @@ export default function WorkspaceChat({ loading, workspace }) {
             <div className="w-fit px-10 p-4 w-1/4 rounded-lg bg-white shadow dark:bg-stone-700 text-black dark:text-slate-200">
               <div className="flex flex-col w-full">
                 <p className="font-semibold text-red-500">
-                  We cannot locate this workspace!
+                  このワークスペースを設置できません！
                 </p>
                 <p className="text-sm mt-4">
-                  It looks like a workspace by this name is not available.
+                  この名前のワークスペースは利用可能ではないようです。
                 </p>
 
                 <div className="flex w-full justify-center items-center mt-4">
@@ -47,7 +47,7 @@ export default function WorkspaceChat({ loading, workspace }) {
                     href={paths.home()}
                     className="border border-gray-800 text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-lg dark:text-slate-200 dark:border-slate-200 dark:hover:bg-stone-900"
                   >
-                    Go back to homepage
+                    ホームに戻る
                   </a>
                 </div>
               </div>

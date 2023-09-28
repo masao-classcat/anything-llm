@@ -55,14 +55,14 @@ export default function Directory({
           >
             <h2 className="text-base md:text-2xl">{files.name}</h2>
             {files.items.some((files) => files.type === "folder") ? (
-              <p className="text-xs italic">{files.items.length} folders</p>
+              <p className="text-xs italic">{files.items.length} フォルダ</p>
             ) : (
               <p className="text-xs italic">
-                {files.items.length} documents |{" "}
+                {files.items.length} ドキュメント |{" "}
                 {nFormatter(
                   files.items.reduce((a, b) => a + b.token_count_estimate, 0)
                 )}{" "}
-                tokens
+                トークン
               </p>
             )}
           </div>
@@ -104,20 +104,18 @@ export default function Directory({
             <div className="w-fit px-10 py-4 w-[25%] rounded-lg bg-white shadow dark:bg-stone-700 text-black dark:text-slate-200">
               <div className="flex flex-col w-full">
                 <p className="font-semibold text-xl flex items-center gap-x-1 justify-left">
-                  What does{" "}
                   <Zap className="h-4 w-4 stroke-yellow-500 fill-yellow-400" />{" "}
-                  mean?
+                  は何を意味するのでしょう？
                 </p>
                 <p className="text-base mt-4">
-                  This symbol indicates that you have embed this document before
-                  and will not have to pay to re-embed this document.
+                  この記号は、このドキュメントを前に埋め込んだことがあり、このドキュメントを再度埋め込むために料金を支払う必要がないことを示します。
                 </p>
                 <div className="flex w-full justify-center items-center mt-4">
                   <button
                     onClick={() => setShowZap(false)}
                     className="border border-gray-800 text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-lg dark:text-slate-200 dark:border-slate-200 dark:hover:bg-stone-900"
                   >
-                    Close
+                    閉じる
                   </button>
                 </div>
               </div>
