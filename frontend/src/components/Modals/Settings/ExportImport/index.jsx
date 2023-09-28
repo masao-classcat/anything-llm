@@ -11,19 +11,19 @@ export default function ExportOrImportData({ hideModal = noop }) {
       <div className="relative bg-white rounded-lg shadow dark:bg-stone-700">
         <div className="flex flex-col items-start justify-between px-6 py-4">
           <p className="text-gray-800 dark:text-stone-200 text-base ">
-            Have multiple AnythingLLM instances or simply want to backup or
-            re-import data from another instance? You can do so here.
+            複数の ClassCat&reg; Knowledge Manager インスタンスがありますか？
+            それとも単にバックアップや別のインスタンスからデータを再インポートすることを望みますか？それをここで行なうことができます。
             <br />
-            <i>
-              This will not automatically sync your vector database embeddings!
-            </i>
+            <b><i>
+            これはベクトルデータベースの埋め込みを自動的に同期はしません！
+            </i></b>
           </p>
           <a
             className="text-gray-400 dark:text-stone-500 my-2 text-xs"
             href={paths.exports()}
             target="_blank"
           >
-            View previous exports &rarr;
+            以前のエクスポートを見る &rarr;
           </a>
         </div>
         <div className="px-6 pb-6 space-y-6 flex h-full w-full">
@@ -39,7 +39,7 @@ export default function ExportOrImportData({ hideModal = noop }) {
             type="button"
             className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
           >
-            Close
+            閉じる
           </button>
         </div>
       </div>
@@ -71,9 +71,9 @@ function ExportData() {
   if (loading) {
     return (
       <div className="w-full flex flex-col gap-y-1 items-center px-6 py-4 border border-gray-200 rounded-lg dark:border-gray-600 bg-slate-200 group animate-pulse">
-        <p className="text-gray-800 text-lg">Exporting....</p>
+        <p className="text-gray-800 text-lg">エクスポート中....</p>
         <p className="text-gray-800 text-sm italic">
-          A download will start automatically.
+          ダウンロードは自動的に開始されます。
         </p>
       </div>
     );
@@ -99,7 +99,7 @@ function ExportData() {
         className="w-full flex gap-1 justify-center items-center px-6 py-4 border border-green-200 rounded-lg dark:border-green-600 bg-green-200 group"
       >
         <Download className="h-4 w-4 text-green-800 " />
-        <p className="text-green-800 text-sm">Download Data Export</p>
+        <p className="text-green-800 text-sm">データをダウンロードしてエクスポートします</p>
       </a>
     );
   }
@@ -111,7 +111,7 @@ function ExportData() {
       className="w-full flex  justify-center px-6 py-4 border border-gray-200 rounded-lg dark:border-gray-600 hover:bg-slate-200 group"
     >
       <p className="text-gray-800 dark:text-stone-200 group-hover:text-gray-800 text-lg">
-        Export AnythingLLM data
+        ClassCat&reg; Knowledge データのエクスポート
       </p>
     </button>
   );
@@ -154,7 +154,7 @@ function ImportData() {
   if (loading) {
     return (
       <div className="w-full flex flex-col gap-y-1 items-center px-6 py-4 border border-gray-200 rounded-lg dark:border-gray-600 bg-slate-200 group animate-pulse">
-        <p className="text-gray-800 text-lg">Importing....</p>
+        <p className="text-gray-800 text-lg">インポート中....</p>
         <p className="text-gray-800 text-sm italic">{file.name}</p>
       </div>
     );
@@ -178,11 +178,11 @@ function ImportData() {
         <div className="flex items-center gap-x-1">
           <CheckCircle className="h-4 w-4 text-green-800 " />
           <p className="text-green-800 text-sm">
-            Import was completed successfully
+            インポートは正常に完了しました
           </p>
         </div>
         <p className="text-green-800 text-xs italic">
-          please reload the page to see the results of the import.
+          インポートの結果を見るにはページを再ロードしてください。
         </p>
       </div>
     );
@@ -205,10 +205,10 @@ function ImportData() {
         className="w-full flex flex-col gap-y-1 items-center px-6 py-4 border border-gray-200 rounded-lg dark:border-gray-600 hover:bg-slate-200 group"
       >
         <p className="text-gray-800 dark:text-stone-200 group-hover:text-gray-800 text-lg">
-          Import AnythingLLM data
+          ClassCat&reg; Knowledge Manager のデータをインポート
         </p>
         <p className="text-gray-800 dark:text-stone-200 group-hover:text-gray-800 text-xs italic">
-          this must be an export from an AnythingLLM instance.
+          これは ClassCat&reg; Knowledge Manager インスタンスからのエクスポートである必要があります。
         </p>
       </button>
     </>
