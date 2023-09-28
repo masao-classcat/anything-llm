@@ -53,7 +53,7 @@ export default function ManageWorkspace({
           <div className="flex flex-col gap-y-1 border-b dark:border-gray-600 px-4 pt-4 ">
             <div className="flex items-start justify-between rounded-t ">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                Update "{workspace.name}"
+                "{workspace.name}" の更新
               </h3>
               <button
                 onClick={hideModal}
@@ -86,21 +86,21 @@ function WorkspaceSettingTabs({ selectedTab, changeTab }) {
       <ul className="flex md:flex-wrap overflow-x-scroll no-scroll -mb-px text-sm gap-x-2 font-medium text-center text-gray-500 dark:text-gray-400">
         <WorkspaceTab
           active={selectedTab === "documents"}
-          displayName="Documents"
+          displayName="ドキュメント"
           tabName="documents"
           icon={<Archive className="h-4 w-4 flex-shrink-0" />}
           onClick={changeTab}
         />
         <WorkspaceTab
           active={selectedTab === "upload"}
-          displayName="Upload Docs"
+          displayName="ドキュメントのアップロード"
           tabName="upload"
           icon={<UploadCloud className="h-4 w-4 flex-shrink-0" />}
           onClick={changeTab}
         />
         <WorkspaceTab
           active={selectedTab === "settings"}
-          displayName="Settings"
+          displayName="設定"
           tabName="settings"
           icon={<Sliders className="h-4 w-4 flex-shrink-0" />}
           onClick={changeTab}

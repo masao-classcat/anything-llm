@@ -84,7 +84,7 @@ export default function Sidebar() {
                   <LLMStatus />
                   <IndexCount />
                 </div>         
-                こ<LogoutButton />こ
+                <LogoutButton />
               </div>
 
               {/* Footer */}
@@ -227,7 +227,7 @@ export function SidebarMobileHeader() {
                     <LLMStatus />
                     <IndexCount />
                   </div>
-                  こ<LogoutButton />こ
+                  <LogoutButton />
                 </div>
 
                 {/* Footer */}
@@ -277,9 +277,6 @@ function AdminHome() {
 }
 
 function LogoutButton() {
-  if (true) {
-    return "LogoutButton"
-  }
   console.log(">> debug > IN : LogoutButton (frontend/src/components/Sidebar/index.jsx")
   if (!window.localStorage.getItem(AUTH_USER)) {
     console.log("step1")

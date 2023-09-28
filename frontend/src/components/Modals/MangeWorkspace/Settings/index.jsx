@@ -66,7 +66,7 @@ export default function WorkspaceSettings({ workspace }) {
         <div className="flex flex-col gap-y-1 w-full">
           <div className="flex flex-col mb-2">
             <p className="text-gray-800 dark:text-stone-200 text-base ">
-              Edit your workspace's settings
+            貴方のワークスペースの設定を変更します。
             </p>
           </div>
 
@@ -88,10 +88,10 @@ export default function WorkspaceSettings({ workspace }) {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Workspace Name
+                  ワークスペース名
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
-                  This will only change the display name of your workspace.
+                  これはワークスペースの表示名だけを変更します。
                 </p>
               </div>
               <input
@@ -117,13 +117,11 @@ export default function WorkspaceSettings({ workspace }) {
                   LLM Temperature
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
-                  This setting controls how "random" or dynamic your chat
-                  responses will be.
+                  この設定はチャットの応答がどの程度「ランダム」あるいは動的になるかを制御します。
                   <br />
-                  The higher the number (2.0 maximum) the more random and
-                  incoherent.
+                  数値が大きければ (最大 2.0)、よりランダムで一貫性がなくなります。
                   <br />
-                  Recommended: 0.7
+                  推奨値 : 0.7
                 </p>
               </div>
               <input
@@ -148,13 +146,10 @@ export default function WorkspaceSettings({ workspace }) {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Prompt
+                  プロンプト
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
-                  The prompt that will be used on this workspace. Define the
-                  context and instructions for the AI to generate a response.
-                  You should to provide a carefully crafted prompt so the AI can
-                  generate a relevant and accurate response.
+                  このワークスペースで使用されるプロンプトです。AI が応答を生成するために必要なコンテキストと指示 (instructions) を定義します。AI が関連性の高い正確な応答を生成できるように、慎重に作成したプロンプトを提供する必要があります。
                 </p>
               </div>
               <textarea
@@ -177,14 +172,12 @@ export default function WorkspaceSettings({ workspace }) {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Chat History
+                  チャット履歴
                 </label>
                 <p className="text-xs text-gray-600 dark:text-stone-400">
-                  The number of previous chats that will be included in the
-                  response's short-term memory.
+                  応答の短期メモリに含まれる、それ以前のチャットの数です。
                   <br />
-                  Recommend 20. Anything more than 45 is likely to lead to
-                  continuous chat failures depending on message size.
+                  推奨値は 20 です。45 を超えると、メッセージサイズに応じて連続的なチャットの失敗に繋がる可能性が高くなります。
                 </p>
               </div>
               <input
@@ -222,14 +215,14 @@ export default function WorkspaceSettings({ workspace }) {
           type="button"
           className="border border-transparent text-gray-500 bg-white hover:bg-red-100 rounded-lg whitespace-nowrap text-sm font-medium px-5 py-2.5 hover:text-red-900 focus:z-10 dark:bg-transparent dark:text-gray-300 dark:hover:text-white dark:hover:bg-red-600"
         >
-          Delete Workspace
+          ワークスペースの削除
         </button>
         {hasChanges && (
           <button
             type="submit"
             className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 whitespace-nowrap text-sm font-medium px-2 md:px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-black dark:text-slate-200 dark:border-transparent dark:hover:text-slate-200 dark:hover:bg-gray-900 dark:focus:ring-gray-800"
           >
-            {saving ? "Updating..." : "Update workspace"}
+            {saving ? "更新中..." : "ワークスペースの更新"}
           </button>
         )}
       </div>

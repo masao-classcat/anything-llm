@@ -13,7 +13,7 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
   const [files, setFiles] = useState([]);
 
   const handleUploadSuccess = () => {
-    showToast("File uploaded successfully", "success");
+    showToast("ファイルが正常にアップロードされました", "success");
   };
 
   const handleUploadError = (message) => {
@@ -57,7 +57,7 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
   const deleteWorkspace = async () => {
     if (
       !window.confirm(
-        `You are about to delete your entire ${workspace.name} workspace. This will remove all vector embeddings on your vector database.\n\nThe original source files will remain untouched. This action is irreversible.`
+        `ワークスペース ${workspace.name} 全体を削除しようとしています。 これはベクトルデータベース上のすべてのベクトル埋め込みを削除します。\n\n元のソース ファイルはそのまま残ります。 このアクションは不可逆で元に戻せません。`
       )
     )
       return false;
@@ -73,10 +73,10 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
         <div className="outline-none transition-all cursor-wait duration-300 bg-stone-400 bg-opacity-20 flex h-[20rem] overflow-y-scroll overflow-x-hidden rounded-lg">
           <div className="flex flex-col gap-y-1 w-full h-full items-center justify-center">
             <p className="text-slate-400 text-xs">
-              Checking document processor is online - please wait.
+              ドキュメントプロセッサがオンラインであるか確認しています - お待ちください。
             </p>
             <p className="text-slate-400 text-xs">
-              this should only take a few moments.
+              これには僅かな時間しかかかりません。
             </p>
           </div>
         </div>
@@ -91,10 +91,10 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
           <div className="flex flex-col gap-y-1 w-full h-full items-center justify-center md:px-0 px-2">
             <Frown className="w-8 h-8 text-red-800" />
             <p className="text-red-800 text-xs text-center">
-              Document processor is offline.
+              ドキュメントプロセッサはオフラインです。
             </p>
             <p className="text-red-800 text-[10px] md:text-xs text-center">
-              you cannot upload documents from the UI right now
+              現在 UI からドキュメントをアップロードすることはできません
             </p>
           </div>
         </div>
@@ -128,8 +128,7 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
                 ></path>
               </svg>
               <p className="mb-2 text-sm text-gray-600 dark:text-slate-300">
-                <span className="font-semibold">Click to upload</span> or drag
-                and drop
+                <span className="font-semibold">クリックしてアップロード</span> またはドラッグアンドドロップしてください
               </p>
               <p className="text-xs text-gray-600 dark:text-slate-300"></p>
             </div>
@@ -151,7 +150,7 @@ export default function UploadToWorkspace({ workspace, fileTypes }) {
         )}
       </div>
       <p className="text-gray-600 dark:text-stone-400 text-xs ">
-        supported file extensions are{" "}
+        サポートされるファイル拡張子は{" "}
         <code className="text-xs bg-gray-200 text-gray-800 dark:bg-stone-800 dark:text-slate-400 font-mono rounded-sm px-1">
           {Object.values(fileTypes).flat().join(" ")}
         </code>
@@ -167,12 +166,11 @@ function ModalWrapper({ deleteWorkspace, children }) {
         <div className="flex flex-col gap-y-1 w-full">
           <div className="flex flex-col mb-2">
             <p className="text-gray-800 dark:text-stone-200 text-base ">
-              Add documents to your workspace.
+              貴方のワークスペースにドキュメントを追加します。
             </p>
             <p className="text-gray-600 dark:text-stone-400 text-xs ">
-              These files will be uploaded to the document processor running on
-              this AnythingLLM instance. These files are not sent or shared with
-              a third party.
+              これらのファイルは ClassCat&reg; Knowledge Manager  インスタンス上で動作するドキュメントプロセッサにアップロードされます。
+              これらのファイルはサードパーティに送られたり共有されることはありません。
             </p>
             {process.env.NODE_ENV !== "production" && (
               <div className="mt-2 text-gray-600 dark:text-stone-400 text-xs">
@@ -194,7 +192,7 @@ function ModalWrapper({ deleteWorkspace, children }) {
           type="button"
           className="border border-transparent text-gray-500 bg-white hover:bg-red-100 rounded-lg text-sm font-medium px-5 py-2.5 hover:text-red-900 focus:z-10 dark:bg-transparent dark:text-gray-300 dark:hover:text-white dark:hover:bg-red-600"
         >
-          Delete Workspace
+          ワークスペースの削除
         </button>
       </div>
     </>
