@@ -27,7 +27,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
         <div className="relative bg-white rounded-lg shadow dark:bg-stone-700">
           <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Create a New Workspace
+            新しいワークスペースを作成します
             </h3>
             <button
               onClick={hideModal}
@@ -46,7 +46,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
                     htmlFor="name"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Workspace Name
+                    ワークスペース名
                   </label>
                   <input
                     name="name"
@@ -60,12 +60,11 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
                 </div>
                 {error && (
                   <p className="text-red-600 dark:text-red-400 text-sm">
-                    Error: {error}
+                    エラー: {error}
                   </p>
                 )}
                 <p className="text-gray-800 dark:text-slate-200 text-xs md:text-sm">
-                  After creating a workspace you will be able to add and remove
-                  documents from it.
+                  ワークスペースを作成後、ドキュメントを追加したり削除することができます。
                 </p>
               </div>
             </div>
@@ -75,13 +74,13 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
                 type="button"
                 className="text-gray-800 hover:bg-gray-100 px-4 py-1 rounded-lg dark:text-slate-200 dark:hover:bg-stone-900"
               >
-                Cancel
+                キャンセル
               </button>
               <button
                 type="submit"
                 className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-black dark:text-slate-200 dark:border-transparent dark:hover:text-slate-200 dark:hover:bg-gray-900 dark:focus:ring-gray-800"
               >
-                Create Workspace
+                ワークスペースの作成
               </button>
             </div>
           </form>
