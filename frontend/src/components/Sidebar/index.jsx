@@ -84,17 +84,8 @@ export default function Sidebar() {
                   <LLMStatus />
                   <IndexCount />
                 </div>
-                <a
-                  href={paths.feedback()}
-                  target="_blank"
-                  className="flex flex-grow w-[100%] h-[36px] gap-x-2 py-[5px] px-4 border border-slate-400 dark:border-transparent rounded-lg text-slate-800 dark:text-slate-200 justify-center items-center hover:bg-slate-100 dark:bg-stone-800 dark:hover:bg-stone-900"
-                >
-                  <AtSign className="h-4 w-4" />
-                  <p className="text-slate-800 dark:text-slate-200 text-xs leading-loose font-semibold">
-                    Feedback form
-                  </p>
-                </a>
-                <ManagedHosting />
+
+                // remove feedback & managedhosting                
                 <LogoutButton />
               </div>
 
@@ -311,6 +302,7 @@ function AdminHome() {
 }
 
 function LogoutButton() {
+  console.log(">> debug > IN : LogoutButton (frontend/src/components/Sidebar/index.jsx")
   if (!window.localStorage.getItem(AUTH_USER)) return null;
   const user = userFromStorage();
   if (!user.username) return null;
