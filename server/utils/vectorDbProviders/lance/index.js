@@ -129,12 +129,16 @@ const LanceDb = {
     await table.delete(`id IN (${vectorIds.map((v) => `'${v}'`).join(",")})`);
     return true;
   },
+
   addDocumentToNamespace: async function (
     namespace,
     documentData = {},
     fullFilePath = null
   ) {
     const { DocumentVectors } = require("../../../models/vectors");
+
+    console.log(">> debug > IN : LanceDb::addDocumentToNamespace (server/utils/vectorDbProviders/lance/index.js)");
+
     try {
       const { pageContent, docId, ...metadata } = documentData;
       if (!pageContent || pageContent.length == 0) return false;
@@ -165,9 +169,10 @@ const LanceDb = {
       // We have to do this manually as opposed to using LangChains `xyz.fromDocuments`
       // because we then cannot atomically control our namespace to granularly find/remove documents
       // from vectordb.
+			console.log( process.env.CC_CHUNK_SIZE, process.env.CC_CHUNK_OVERLAP)
       const textSplitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 1000,
-        chunkOverlap: 20,
+        chunkSize: Number(process.env.CC_CHUNK_SIZE), // 1000,
+        chunkOverlap: Number(process.env.CC_CHUNK_OVERLAP), // 20,
       });
       const textChunks = await textSplitter.splitText(pageContent);
 
