@@ -30,7 +30,7 @@ export default function Citations({ sources = [] }) {
         </div>
       </div>
       <p className="w-fit text-gray-700 dark:text-stone-400 text-xs mt-1">
-        *citations may not be relevant to end result.
+        * 引用は最終的な結果には関連してない可能性があります。
       </p>
     </div>
   );
