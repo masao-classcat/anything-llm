@@ -48,12 +48,18 @@ class OpenAi {
   }
 
   async sendChat(chatHistory = [], prompt, workspace = {}) {
+    console.log(">> debug > IN : OpenAi::sendChat (server/utils/AiProviders/openAi/index.js)")
+
     const model = process.env.OPEN_MODEL_PREF;
     if (!this.isValidChatModel(model))
       throw new Error(
         `OpenAI chat: ${model} is not valid for chat completion!`
       );
 
+    console.log(model)
+    temperature = Number(workspace?.openAiTemp ?? 0.7)
+    console.log(temperature)
+    
     const textResponse = await this.openai
       .createChatCompletion({
         model,
@@ -84,7 +90,11 @@ class OpenAi {
   }
 
   async getChatCompletion(messages = [], { temperature = 0.7 }) {
+    console.log(">> debug > IN : OpenAi::getChatCompletion (server/utils/AiProviders/openAi/index.js)")
     const model = process.env.OPEN_MODEL_PREF || "gpt-3.5-turbo";
+    console.log(model)
+    console.log(messages)
+    console.log(temperature)
     const { data } = await this.openai.createChatCompletion({
       model,
       messages,
