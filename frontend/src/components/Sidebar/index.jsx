@@ -277,6 +277,9 @@ function AdminHome() {
 }
 
 function LogoutButton() {
+  if (true) {
+    return "LogoutButton"
+  }
   console.log(">> debug > IN : LogoutButton (frontend/src/components/Sidebar/index.jsx")
   if (!window.localStorage.getItem(AUTH_USER)) {
     console.log("step1")
