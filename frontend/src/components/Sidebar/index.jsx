@@ -278,10 +278,15 @@ function AdminHome() {
 
 function LogoutButton() {
   console.log(">> debug > IN : LogoutButton (frontend/src/components/Sidebar/index.jsx")
-  if (!window.localStorage.getItem(AUTH_USER)) return null;
+  if (!window.localStorage.getItem(AUTH_USER)) {
+    console.log("step1")
+    return null;
+  }
   const user = userFromStorage();
-  if (!user.username) return null;
-
+  if (!user.username) {
+    console.log("step2")
+    return null;
+  }
   return (
     <button
       onClick={() => {
