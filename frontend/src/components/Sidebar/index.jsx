@@ -22,7 +22,7 @@ import Discord from "../Icons/Discord";
 import useUser from "../../hooks/useUser";
 import { userFromStorage } from "../../utils/request";
 import { AUTH_TOKEN, AUTH_USER } from "../../utils/constants";
-import useLogo from "../../hooks/useLogo";classcat
+import useLogo from "../../hooks/useLogo";
 import SettingsOverlay, { useSystemSettingsOverlay } from "./SettingsOverlay";
 
 export default function Sidebar() {
@@ -84,7 +84,7 @@ export default function Sidebar() {
                   <LLMStatus />
                   <IndexCount />
                 </div>         
-                <LogoutButton />
+                こ<LogoutButton />こ
               </div>
 
               {/* Footer */}
@@ -227,7 +227,7 @@ export function SidebarMobileHeader() {
                     <LLMStatus />
                     <IndexCount />
                   </div>
-                  <LogoutButton />
+                  こ<LogoutButton />こ
                 </div>
 
                 {/* Footer */}
