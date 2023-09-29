@@ -48,6 +48,8 @@ export default function ExportOrImportData({ hideModal = noop }) {
 }
 
 function ExportData() {
+  console.log('>> debug > ExportData (frontend/src/components/Modals/Settings/ExportImport/index.jsx)')
+
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
