@@ -3,6 +3,8 @@ const { User } = require("../../models/user");
 const { decodeJWT } = require("../http");
 
 async function validatedRequest(request, response, next) {
+  console.log('>>debug > IN : validatedRequest (server/utils/middleware/validatedRequest.js) ')
+
   const multiUserMode = await SystemSettings.isMultiUserMode();
   response.locals.multiUserMode = multiUserMode;
   if (multiUserMode)
@@ -50,6 +52,8 @@ async function validatedRequest(request, response, next) {
 async function validateMultiUserRequest(request, response, next) {
   const auth = request.header("Authorization");
   const token = auth ? auth.split(" ")[1] : null;
+
+  console.log('>>debug > IN : validateMultiUserRequest (server/utils/middleware/validatedRequest.js) ')
 
   if (!token) {
     response.status(403).json({
