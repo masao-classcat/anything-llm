@@ -108,12 +108,7 @@ export default function SettingsOverlay() {
                 isActive={tab === "vectordb"}
                 onClick={() => selectTab("vectordb")}
               />
-              <Option
-                btnText="Export or Import"
-                icon={<Archive className="h-4 w-4 flex-shrink-0" />}
-                isActive={tab === "exportimport"}
-                onClick={() => selectTab("exportimport")}
-              />
+
               {!settings?.MultiUserMode && (
                 <>
                   <Option
@@ -121,18 +116,6 @@ export default function SettingsOverlay() {
                     icon={<Lock className="h-4 w-4 flex-shrink-0" />}
                     isActive={tab === "password"}
                     onClick={() => selectTab("password")}
-                  />
-                  <Option
-                    btnText="マルチユーザモード"
-                    icon={<Users className="h-4 w-4 flex-shrink-0" />}
-                    isActive={tab === "multiuser"}
-                    onClick={() => selectTab("multiuser")}
-                  />
-                  <Option
-                    btnText="API キー"
-                    icon={<Key className="h-4 w-4 flex-shrink-0" />}
-                    isActive={tab === "apikey"}
-                    onClick={() => selectTab("apikey")}
                   />
 
                 </>
