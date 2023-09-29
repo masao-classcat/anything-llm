@@ -303,8 +303,7 @@ function systemEndpoints(app) {
     }
   );
 
-  app.get("/system/data-export",  async (_, response) => {
-  // app.get("/system/data-export", [validatedRequest], async (_, response) => {
+  app.get("/system/data-export", [validatedRequest], async (_, response) => {
     console.log('>> debug > app.get(/system/data-export) (server/endpoints/system.js)')
     try {
       const { filename, error } = await exportData();
@@ -319,6 +318,9 @@ function systemEndpoints(app) {
     "/system/data-exports/:filename",
     [validatedRequest],
     (request, response) => {
+
+      console.log('>> debug > app.get(/system/data-export/:filename) (server/endpoints/system.js)')
+
       const exportLocation = __dirname + "/../storage/exports/";
       const sanitized = path
         .normalize(request.params.filename)
