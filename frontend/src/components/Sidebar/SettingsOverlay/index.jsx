@@ -122,6 +122,19 @@ export default function SettingsOverlay() {
                     isActive={tab === "password"}
                     onClick={() => selectTab("password")}
                   />
+                  <Option
+                    btnText="マルチユーザモード"
+                    icon={<Users className="h-4 w-4 flex-shrink-0" />}
+                    isActive={tab === "multiuser"}
+                    onClick={() => selectTab("multiuser")}
+                  />
+                  <Option
+                    btnText="API キー"
+                    icon={<Key className="h-4 w-4 flex-shrink-0" />}
+                    isActive={tab === "apikey"}
+                    onClick={() => selectTab("apikey")}
+                  />
+
                 </>
               )}
             </div>
