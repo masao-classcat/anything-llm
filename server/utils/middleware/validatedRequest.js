@@ -31,6 +31,9 @@ async function validatedRequest(request, response, next) {
   const auth = request.header("Authorization");
   const token = auth ? auth.split(" ")[1] : null;
 
+  console.log(auth);
+  console.log(token);
+
   if (!token) {
     response.status(403).json({
       error: "No auth token found.",
@@ -54,6 +57,8 @@ async function validateMultiUserRequest(request, response, next) {
   const token = auth ? auth.split(" ")[1] : null;
 
   console.log('>>debug > IN : validateMultiUserRequest (server/utils/middleware/validatedRequest.js) ')
+  console.log(auth)
+  console.log(token)
 
   if (!token) {
     response.status(403).json({
