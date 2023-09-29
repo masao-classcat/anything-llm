@@ -304,6 +304,7 @@ function systemEndpoints(app) {
   );
 
   app.get("/system/data-export", [validatedRequest], async (_, response) => {
+    console.log('>> debug > app.get(/system/data-export) (server/endpoints/system.js)')
     try {
       const { filename, error } = await exportData();
       response.status(200).json({ filename, error });

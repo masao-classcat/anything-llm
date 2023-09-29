@@ -130,7 +130,7 @@ const System = {
 
     return await fetch(`${API_BASE}/system/data-export`, {
       method: "GET",
-      headers: baseHeaders(access_token),
+      headers: baseHeaders(),
     })
       .then((res) => res.json())
       .then((res) => res)

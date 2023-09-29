@@ -3,6 +3,7 @@ const path = require("path");
 const { v4 } = require("uuid");
 
 async function exportData() {
+  console.log('>> debug > exportData (server/utils/files/data.js)')
   const uid = `anythingllm-export-${new Date()
     .toJSON()
     .slice(0, 10)}-${new Date().toJSON().slice(11, 19)}`;
