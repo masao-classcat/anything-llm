@@ -126,9 +126,11 @@ const System = {
 
   dataExport: async () => {
     console.log('>> debug > System::dataExport (frontend/src/models/system.js)')
+    const access_token = process.env.CC_ACCESS_TOKEN
+
     return await fetch(`${API_BASE}/system/data-export`, {
       method: "GET",
-      headers: baseHeaders(),
+      headers: baseHeaders(access_token),
     })
       .then((res) => res.json())
       .then((res) => res)
