@@ -46,6 +46,8 @@ COPY ./docker/docker-healthcheck.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
     chmod +x /usr/local/bin/docker-healthcheck.sh
 
+#RUN update-locale LANG=ja_JP.UTF-8
+
 USER anythingllm
 
 WORKDIR /app
@@ -88,8 +90,17 @@ RUN cd /app/collector && \
 ENV NODE_ENV=production
 ENV PATH=/app/collector/v-env/bin:$PATH
 
+# masao
+RUN mkdir -p ./server/ssl && openssl req -x509 -newkey rsa:2048 \
+    -keyout ./server/ssl/privatekey.pem \
+    -out ./server/ssl/cert.pem -nodes -days 365 \
+    -subj '/C=JP/O=ClassCat/CN=classcat.com'
+
 # Expose the server port
-EXPOSE 3001
+EXPOSE 8080
+#EXPOSE 3001
+
+#ENV LANG ja_JP.UTF-8
 
 # Setup the healthcheck
 HEALTHCHECK --interval=1m --timeout=10s --start-period=1m \
