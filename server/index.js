@@ -91,6 +91,7 @@ app.all("*", function (_, response) {
 // masao : 27-sep-23
 const fs = require('fs');
 
+/*
 const server = require('https').createServer(
   {
     key: fs.readFileSync('/app/server/ssl/privatekey.pem'),
@@ -98,8 +99,10 @@ const server = require('https').createServer(
   },
   app
 );
+*/
 
-server   // app
+//server
+app
   .listen(process.env.SERVER_PORT || 3001, async () => {
     await validateTablePragmas();
     await setupTelemetry();
