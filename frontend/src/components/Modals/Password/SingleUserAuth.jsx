@@ -33,7 +33,7 @@ export default function SingleUserAuth() {
           <div className="flex items-center flex-col">
             <img src={_initLogo} alt="Logo" className="w-1/2" />
             <h3 className="text-md md:text-xl font-semibold text-gray-900 dark:text-white">
-              This instance is password protected.
+              このインスタンスはパスワード保護されています。
             </h3>
           </div>
         </div>
@@ -44,7 +44,7 @@ export default function SingleUserAuth() {
                 htmlFor="password"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Workspace Password
+                ワークスペースのパスワード
               </label>
               <input
                 name="password"
@@ -57,12 +57,11 @@ export default function SingleUserAuth() {
             </div>
             {error && (
               <p className="text-red-600 dark:text-red-400 text-sm">
-                Error: {error}
+                エラー: {error}
               </p>
             )}
             <p className="text-gray-800 dark:text-slate-200 md:text-sm text-xs">
-              You will only have to enter this password once. After successful
-              login it will be stored in your browser.
+              このパスワードを入力する必要があるのは 1 回だけです。 ログインに成功すればブラウザに保存されます。 
             </p>
           </div>
         </div>
@@ -72,7 +71,7 @@ export default function SingleUserAuth() {
             type="submit"
             className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
           >
-            {loading ? "Validating..." : "Submit"}
+            {loading ? "認証中..." : "送信"}
           </button>
         </div>
       </div>
