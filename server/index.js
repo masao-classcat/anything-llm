@@ -88,18 +88,7 @@ app.all("*", function (_, response) {
   response.sendStatus(404);
 });
 
-// masao : 27-sep-23
-const fs = require('fs');
-
-const server = require('https').createServer(
-  {
-    key: fs.readFileSync('/app/server/ssl/privatekey.pem'),
-    cert: fs.readFileSync('/app/server/ssl/cert.pem'),
-  },
-  app
-);
-
-server   // app
+app
   .listen(process.env.SERVER_PORT || 3001, async () => {
     await validateTablePragmas();
     await setupTelemetry();
