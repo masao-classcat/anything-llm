@@ -111,7 +111,7 @@ function ExportData() {
       className="w-full flex  justify-center px-6 py-4 border border-gray-200 rounded-lg dark:border-gray-600 hover:bg-slate-200 group"
     >
       <p className="text-gray-800 dark:text-stone-200 group-hover:text-gray-800 text-lg">
-        ClassCat&reg; Knowledge データのエクスポート
+        ClassCat&reg; Knowledge Manager データのエクスポート
       </p>
     </button>
   );
