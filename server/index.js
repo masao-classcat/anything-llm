@@ -91,13 +91,24 @@ app.all("*", function (_, response) {
 // masao : 27-sep-23
 const fs = require('fs');
 
+const ssl_key = '/app/server/ssl/privatekey.pem';
+// const ssl_key = '/letsencrypt/live/kmgr-demo.classcat.com/privkey.pem';
+
+const ssl_cert = '/app/server/ssl/cert.pem'
+// const ssl_cert = '/letsencrypt/live/kmgr-demo.classcat.com/fullchain.pem'
+
 const server = require('https').createServer(
   {
-    key: fs.readFileSync('/app/server/ssl/privatekey.pem'),
-    cert: fs.readFileSync('/app/server/ssl/cert.pem'),
+    key: fs.readFileSync(ssl_key),
+    cert: fs.readFileSync(ssl_cert),
   },
   app
 );
+
+key: fs.readFileSync('/letsencrypt/live/kmgr-demo.classcat.com/privkey.pem'),
+// key: fs.readFileSync('/app/server/ssl/privatekey.pem'),
+cert: fs.readFileSync('/letsencrypt/live/kmgr-demo.classcat.com/fullchain.pem'),
+// cert: fs.readFileSync('/app/server/ssl/cert.pem'),
 
 server // app
   .listen(process.env.SERVER_PORT || 3001, async () => {
